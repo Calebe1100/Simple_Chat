@@ -1,0 +1,8 @@
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\bin\Debug\Chat_Server.exe.config
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\bin\Debug\Chat_Server.exe
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\bin\Debug\Chat_Server.pdb
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\obj\Debug\Chat_Server.csproj.AssemblyReference.cache
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\obj\Debug\Chat_Server.csproj.SuggestedBindingRedirects.cache
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\obj\Debug\Chat_Server.csproj.CoreCompileInputs.cache
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\obj\Debug\Chat_Server.exe
+C:\Users\Vertown\Documents\Eng_Comp\Nono Semestre\IA\Chat_Server\obj\Debug\Chat_Server.pdb
