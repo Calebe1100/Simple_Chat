@@ -59,26 +59,7 @@ public class ChatController {
         Socket clientCall;
         BufferedReader inBuffer;
 
-        try(ServerSocket serverPort = new ServerSocket(5100)){
-            System.out.println("Escutando mensagens");
-            while(true){
-                clientCall = serverPort.accept();
-                inBuffer = new BufferedReader(new InputStreamReader(clientCall.getInputStream()));
-                String messageReceived = inBuffer.readLine();
-                Text textToAdd = new Text(messageReceived);
-                caixaMensagens.getChildren().add(textToAdd);
-                if("bye".equalsIgnoreCase(messageReceived)){
-                    break;
-                }
-            }
+        
 
-            inBuffer.close();
-            clientCall.close();
-            serverPort.close();
-
-        }catch(Exception e){
-
-        }
     }
-
 }
