@@ -81,13 +81,20 @@ public class ChatController {
             inBuffer = new BufferedReader(new InputStreamReader(clientCall.getInputStream()));
             String messageReceived = "";
             messageReceived = inBuffer.readLine();
-            Text messageTextType = new Text(messageReceived);
+            String[] receiverList = formatReceiverMessage(messageReceived);
+            String messageToAdd = receiverList[1]+": "+receiverList[0];
+            Text messageTextType = new Text(messageToAdd);
             caixaMensagens.getChildren().add(messageTextType);
 
         }catch(Exception e){
 
         }
 
+    }
+    
+    public String[] formatReceiverMessage(String receiverMessage) {
+        String[] receiverList = receiverMessage.split(";");
+        return receiverList;
     }
 
     public class MyRunnable implements Runnable{
