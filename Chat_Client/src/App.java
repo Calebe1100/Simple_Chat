@@ -27,8 +27,6 @@ public class App extends Application {
         primaryStage.setTitle("Chat Client");
         primaryStage.setScene(scene);
         primaryStage.show();
-        ChatController cc = new ChatController();
-        cc.listenMessages();
     }
 
     public void stop() {

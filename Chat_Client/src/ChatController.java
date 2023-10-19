@@ -56,7 +56,7 @@ public class ChatController {
     }
 
     public void listenMessages(){
-        Socket clientCall;
+       
         BufferedReader inBuffer;
 
         
