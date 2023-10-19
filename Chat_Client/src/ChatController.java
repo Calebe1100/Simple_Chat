@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class ChatController {
 
     public static Stage _primaryStage;
+    public static boolean conected = false;
 
     @FXML
     private Button botaoEnviar;
@@ -39,16 +40,29 @@ public class ChatController {
         sendMessage();
     }
 
+    @FXML
+    void conect(ActionEvent event){
+        this.conected = true;
+        Runnable runnable = new MyRunnable();
+        Thread thread = new Thread(runnable);
+        thread.start();
+        
+    }
+    
+
     private void sendMessage(){
 
-        try(Socket socket = new Socket(ipServidor.getText(), 5100)){
+        try(Socket socket = new Socket(ipServidor.getText(), Integer.parseInt(porta.getText()))){
 
             PrintWriter outBuffer = new PrintWriter(socket.getOutputStream(), true);
-            String messageToSend = mensagemEnviar.getText();
+            String messageToSend = mensagemEnviar.getText()+";"+nomeUsuario.getText();
             outBuffer.println(messageToSend);
-
             outBuffer.close();
             socket.close();
+            mensagemEnviar.setText("");
+            if("bye".equalsIgnoreCase(mensagemEnviar.getText())){
+                this.conected = false;
+            }
 
         }catch(Exception e){
 
@@ -56,29 +70,32 @@ public class ChatController {
     }
 
     public void listenMessages(){
-        Socket clientCall;
+       
         BufferedReader inBuffer;
+        Socket clientCall;
 
-        try(ServerSocket serverPort = new ServerSocket(5100)){
-            System.out.println("Escutando mensagens");
-            while(true){
-                clientCall = serverPort.accept();
-                inBuffer = new BufferedReader(new InputStreamReader(clientCall.getInputStream()));
-                String messageReceived = inBuffer.readLine();
-                Text textToAdd = new Text(messageReceived);
-                caixaMensagens.getChildren().add(textToAdd);
-                if("bye".equalsIgnoreCase(messageReceived)){
-                    break;
-                }
-            }
+        try{
+            ServerSocket tomadaServidor = new ServerSocket(Integer.parseInt(porta.getText()));
+            clientCall = tomadaServidor.accept();
 
-            inBuffer.close();
-            clientCall.close();
-            serverPort.close();
+            inBuffer = new BufferedReader(new InputStreamReader(clientCall.getInputStream()));
+            String messageReceived = "";
+            messageReceived = inBuffer.readLine();
+            Text messageTextType = new Text(messageReceived);
+            caixaMensagens.getChildren().add(messageTextType);
 
         }catch(Exception e){
 
         }
+
     }
 
+    public class MyRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            listenMessages();
+        }
+        
+    }
 }
